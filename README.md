@@ -2,8 +2,9 @@
 An Alpine-based Music Player Daemon Docker image with HTTP streaming support.
 
 ## Features
-- Lightweight Alpine Linux base
-- MPD with HTTP streaming on port 8000
+- Lightweight Alpine Linux base (latest)
+- MPD stable version (Alpine latest)
+- HTTP streaming support (MP3 at 192kbps) on port 8000
 - Support for multiple audio formats (MP3, FLAC, OGG, AAC)
 - Auto-updating music database
 
