@@ -7,6 +7,7 @@ An Alpine-based Music Player Daemon Docker image with HTTP streaming support.
 - HTTP streaming support (MP3 at 192kbps) on port 8000
 - Support for multiple audio formats (MP3, FLAC, OGG, AAC)
 - Auto-updating music database
+- Multi-architecture support (linux/amd64, linux/arm64)
 
 ## Installation
 
