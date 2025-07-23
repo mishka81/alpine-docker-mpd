@@ -1,9 +1,11 @@
 services:
   mpd:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: alpine-docker-mpd:latest
+    # Uncomment to build locally:
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    # Use pre-built image from GitHub Container Registry:
+    image: ghcr.io/mishka81/alpine-docker-mpd:latest
     container_name: mpd
     ports:
       - "6600:6600"
