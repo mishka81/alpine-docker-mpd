@@ -31,21 +31,23 @@ docker run -d \
   -p 8000:8000 \
   -v /path/to/your/music:/var/lib/mpd/music:ro \
   -v /path/to/your/playlists:/var/lib/mpd/playlists \
-  ghcr.io/USER/alpine-docker-mpd:latest
+  ghcr.io/mishka81/alpine-docker-mpd:latest
 ```
 
 ### Pre-built Images
 
 Images are automatically built and published to GitHub Container Registry:
-- `ghcr.io/USER/alpine-docker-mpd:latest` - Latest stable version
-- `ghcr.io/USER/alpine-docker-mpd:main` - Latest development version
-- `ghcr.io/USER/alpine-docker-mpd:v1.0.0` - Specific version tags
+- `ghcr.io/mishka81/alpine-docker-mpd:latest` - Latest stable version
+- `ghcr.io/mishka81/alpine-docker-mpd:main` - Latest development version
+- `ghcr.io/mishka81/alpine-docker-mpd:v1.0.0` - Specific version tags
 
 Images are available for both `linux/amd64` and `linux/arm64` architectures.
 
 3. Access MPD:
-   - Control interface: `localhost:6600`
-   - HTTP stream: `http://localhost:8000`
+   - Control interface: `<docker-host>:6600`
+   - HTTP stream: `http://<docker-host>:8000`
+   
+   Replace `<docker-host>` with your Docker host IP address (e.g., `localhost` for local Docker, or your server's IP for remote Docker).
 
 ## Configuration
 
@@ -54,11 +56,24 @@ The default configuration provides:
 - Playlists: `/var/lib/mpd/playlists` (mounted from `PLAYLISTS_FOLDER`)
 - HTTP streaming at 192kbps MP3
 
-To customize, edit `mpd.conf` before building the image.
+### Sound Card Access
+
+To enable direct sound card output (instead of HTTP streaming only), uncomment the devices section in `docker-compose.yml`:
+
+```yaml
+devices:
+  - /dev/snd
+```
+
+This grants the container access to your host's sound card for local audio playback.
+
+### Custom Configuration
+
+To customize MPD settings, edit `mpd.conf` before building the image.
 
 ## Usage with MPD clients
 
-Connect any MPD client to `localhost:6600`:
-- **ncmpcpp** (terminal): `ncmpcpp -h localhost`
-- **Cantata** (GUI): Add server at `localhost:6600`
-- **M.A.L.P.** (Android): Add profile with host `your-server-ip:6600`
+Connect any MPD client to `<docker-host>:6600`:
+- **ncmpcpp** (terminal): `ncmpcpp -h <docker-host>`
+- **Cantata** (GUI): Add server at `<docker-host>:6600`
+- **M.A.L.P.** (Android): Add profile with host `<docker-host>:6600`
