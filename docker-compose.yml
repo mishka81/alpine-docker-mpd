@@ -5,7 +5,7 @@ services:
     #   context: .
     #   dockerfile: Dockerfile
     # Use pre-built image from GitHub Container Registry:
-    image: ghcr.io/mishka81/alpine-docker-mpd:latest
+    image: ghcr.io/mishka81/alpine-mpd:latest
     container_name: mpd
     ports:
       - "6600:6600"
