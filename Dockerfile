@@ -6,7 +6,7 @@ LABEL org.opencontainers.image.description="Alpine Linux based Music Player Daem
 LABEL org.opencontainers.image.licenses="MIT"
 
 # Install MPD and required dependencies
-RUN apk add --no-cache mpd lame flac vorbis-tools faac ffmpeg curl
+RUN apk add --no-cache mpd lame flac vorbis-tools faac ffmpeg alsa-utils curl
 
 # Create required directories with proper permissions
 RUN mkdir -p \

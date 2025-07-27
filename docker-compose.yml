@@ -1,10 +1,8 @@
 services:
   mpd:
-    # Uncomment to build locally:
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile
-    # Use pre-built image from GitHub Container Registry:
+    build:
+     context: .
+     dockerfile: Dockerfile
     image: ghcr.io/mishka81/alpine-mpd:latest
     container_name: mpd
     ports:
