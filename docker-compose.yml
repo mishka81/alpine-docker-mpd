@@ -8,10 +8,12 @@ services:
     ports:
       - "6600:6600"
       - "8000:8000"
-#    devices:
-#      - /dev/snd
+    group_add:
+      - 29
+    devices:
+      - /dev/snd
     volumes:
       - ${MUSIC_FOLDER}:/var/lib/mpd/music:ro
-      - ${PLAYLISTS_FOLDER}:/var/lib/mpd/playlists
+      - ${PLAYLIST_FOLDER}:/var/lib/mpd/playlists
       - ./mpd.conf:/etc/mpd.conf:ro
     restart: unless-stopped
