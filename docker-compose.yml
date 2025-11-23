@@ -3,7 +3,7 @@ services:
     build:
      context: .
      dockerfile: Dockerfile
-    image: ghcr.io/mishka81/alpine-mpd:latest
+    image: ghcr.io/mishka81/alpine-mpd:0.24.5
     container_name: mpd
     ports:
       - "6600:6600"
@@ -14,6 +14,6 @@ services:
       - /dev/snd
     volumes:
       - ${MUSIC_FOLDER}:/var/lib/mpd/music:ro
-      - ${PLAYLIST_FOLDER}:/var/lib/mpd/playlists
+      - ${PLAYLISTS_FOLDER}:/var/lib/mpd/playlists
       - ./mpd.conf:/etc/mpd.conf:ro
     restart: unless-stopped
