@@ -40,6 +40,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Get MPD version
+        id: mpd_version
+        run: |
+          VERSION=$(docker run --rm alpine:3 sh -c \
+            "apk update -q 2>/dev/null && apk info mpd 2>/dev/null" \
+            | head -1 | sed 's/mpd-\([0-9.]*\)-.*/\1/')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
       - name: Extract metadata
         id: meta
         uses: docker/metadata-action@v5
@@ -54,6 +62,7 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=${{ steps.mpd_version.outputs.version }},enable={{is_default_branch}}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
