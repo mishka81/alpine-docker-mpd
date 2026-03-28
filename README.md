@@ -2,8 +2,8 @@
 An Alpine-based Music Player Daemon Docker image with HTTP streaming support.
 
 ## Features
-- Lightweight Alpine Linux base (latest)
-- MPD stable version (Alpine latest)
+- Lightweight Alpine 3 base (digest-pinned, auto-updated via Renovate)
+- MPD stable version from Alpine packages (image tagged with MPD version)
 - HTTP streaming support (MP3 at 192kbps) on port 8000
 - Support for multiple audio formats (MP3, FLAC, OGG, AAC)
 - Auto-updating music database
@@ -33,15 +33,20 @@ docker run -d \
   -p 8000:8000 \
   -v /path/to/your/music:/var/lib/mpd/music:ro \
   -v /path/to/your/playlists:/var/lib/mpd/playlists \
-  ghcr.io/mishka81/alpine-docker-mpd:latest
+  mishka81/alpine-mpd:latest
 ```
 
 ### Pre-built Images
 
-Images are automatically built and published to GitHub Container Registry:
-- `ghcr.io/mishka81/alpine-docker-mpd:latest` - Latest stable version
-- `ghcr.io/mishka81/alpine-docker-mpd:main` - Latest development version
-- `ghcr.io/mishka81/alpine-docker-mpd:v1.0.0` - Specific version tags
+Images are automatically built and published to both registries:
+
+**DockerHub:**
+- `mishka81/alpine-mpd:latest` - Latest stable version
+- `mishka81/alpine-mpd:0.24.8` - Tagged with MPD version
+
+**GitHub Container Registry:**
+- `ghcr.io/mishka81/alpine-mpd:latest` - Latest stable version
+- `ghcr.io/mishka81/alpine-mpd:0.24.8` - Tagged with MPD version
 
 Images are available for both `linux/amd64` and `linux/arm64` architectures.
 
