@@ -1,0 +1,15 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "dockerfile": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["alpine"],
+      "pinDigests": true,
+      "automerge": true
+    }
+  ]
+}
